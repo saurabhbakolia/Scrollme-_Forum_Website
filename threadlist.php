@@ -110,7 +110,7 @@
             echo '<div class="media my-4">
             <img class="mr-3" src="https://source.unsplash.com/random/500x400/?' . $title . '" width="40px" border-radius="25px" alt="user">
             <div class="media-body">
-                <h5 class="mt-0"><a class="text-dark" href="thread.php?threadid=' . $id . '">' . ucwords($title) . '</a></h5>
+                <h5 class="mt-0"><a class="text-dark" href="thread.php?thread_id=' . $id . '">' . ucwords($title) . '</a></h5>
                     ' . $desc . '
             </div>
         </div>';
