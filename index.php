@@ -17,6 +17,9 @@
             height: 60vh;
             object-fit: cover;
         }
+        #ques{
+            min-height: 300px;
+        }
     </style>
 </head>
 
@@ -55,7 +58,7 @@
     </div>
 
     <!-- Category Container -->
-    <div class="container text-center my-4">
+    <div class="container text-center my-4 id="ques">
         <h2>Scrollme - Browse Categories</h2>
         <div class="row my-4">
             <!-- Fetch Categories and iterate through all categories-->
