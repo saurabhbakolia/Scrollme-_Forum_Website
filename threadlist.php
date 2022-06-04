@@ -46,7 +46,7 @@
     $showAlert = false;
     $method = $_SERVER['REQUEST_METHOD'];
     if ($method == 'POST') {
-        // insert thread into database
+        // insert into thread database
         $th_title = $_POST['title'];
         $th_desc = $_POST['desc'];
         $sql = "INSERT INTO `threads` (`thread_title`, `thread_desc`, `thread_cat_id`, `thread_user_id`, `timestamp`) VALUES ('$th_title', '$th_desc', '$id', '0', current_timestamp())";

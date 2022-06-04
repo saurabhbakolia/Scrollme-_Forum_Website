@@ -8,6 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <style>
         #ques {
             min-height: 300px;
@@ -39,6 +41,23 @@
     }
 
     ?>
+    <?php
+    $showAlert = false;
+    $method = $_SERVER['REQUEST_METHOD'];
+    if ($method == 'POST') {
+        // insert into comment database
+        $comment_text = $_POST['comment'];
+        $sql = "INSERT INTO `comments` (`comment_text`, `thread_id`, `comment_by`, `comment_time`) VALUES ('$comment_text', '$id', '0', current_timestamp())";
+        $result = mysqli_query($conn, $sql);
+        $showAlert = true;
+        if ($showAlert) {
+            echo '<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Your comment has been successfully posted.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+    }
+    ?>
 
 
     <!-- theadList start here  -->
@@ -53,6 +72,7 @@
             </p>
         </div>
     </div>
+
 
 
     <div class="container">
@@ -78,10 +98,12 @@
             $noResult = false;
             $id = $row['comment_id'];
             $comment_content = $row['comment_text'];
+            $comment_time = $row['comment_time'];
             // $desc = $row['thread_desc'];
             echo '<div class="media my-4">
-            <img class="mr-3" src="https://source.unsplash.com/random/500x400/?' . $title . '" width="40px" border-radius="25px" alt="user">
+            <img class="mr-3" src="https://source.unsplash.com/random/500x400/?' . $id . '" width="40px" border-radius="25px" alt="user">
             <div class="media-body">
+                    <p><span class="font-weight-bold my-0">John</span> at '.$comment_time.'</p>
                     ' . $comment_content . '
             </div>
         </div>';
@@ -98,6 +120,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
